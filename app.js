@@ -1,13 +1,66 @@
 const notificationBell = document.getElementById('notification-bell')
 const notificationMessage = document.getElementById('notification-dropdown')
-const overlay = document.getElementById('background-overlay')
+const bodyOverlay = document.getElementById('background-overlay')
+const navOverlay = document.getElementById('nav-background-overlay')
 const navigationBar = document.getElementsByClassName('navigation-bar')
 const displayMenu = document.getElementById('display-menu')
 const dropdownMenu = document.getElementById('dropdown-menu')
 const closePopupBtn = document.getElementById('close-offer-popup')
 const offerPopup = document.getElementById('plans-offer')
 const setupGuideSteps = document.getElementById('setup-guide-steps')
+const checkBoxes = document.querySelectorAll('.checkbox')
+const indicator = document.getElementById('counter')
+const progressBarContainer = document.getElementById('progress-bar-container')
+const progressBar = document.getElementById('progress-bar')
+const setupGuideContainer = document.getElementById('setup-guide-container')
+const setupGuideHeader = document.getElementById('setup-guide-header-container')
+const setupGuideStepsContainer = document.getElementById('setup-guide-steps-container')
 
+const toggleSetupGuide = function(){
+    if (setupGuideContainer.style.maxHeight !== '50000px') {
+        setupGuideContainer.style.maxHeight = '50000px';
+    } else {
+        setupGuideContainer.style.maxHeight = '100px';
+    }    
+    setupGuideStepsContainer.classList.toggle('hidden')
+    setupGuideStepsContainer.classList.toggle('setup-guide-steps-container')
+    console.log(setupGuideContainer.style.maxHeight)
+}
+setupGuideHeader.addEventListener('click', toggleSetupGuide)
+
+checkBoxes.forEach(function(checkbox) {
+    const uncheckedState = checkbox.querySelector('.unchecked-state')
+    const loadingSpinner = checkbox.querySelector('.loading-spinner')
+    const checkedState = checkbox.querySelector('.checked-state')
+    // console.log({uncheckedState})
+
+    const switchCheckBoxState = function(){
+        if (!uncheckedState.classList.contains('hidden')) {
+            uncheckedState.classList.add('hidden')
+            loadingSpinner.classList.remove('hidden')
+            setTimeout(() => {
+             loadingSpinner.classList.add('hidden') 
+             checkedState.classList.remove('hidden')
+
+             indicator.textContent = Number(indicator.textContent) + 1
+             const rect = progressBar.getBoundingClientRect();
+                progressBar.style.width = (Math.round(rect.width*10)/10) + (20/100) * progressBarContainer.offsetWidth 
+            }, 2000)
+        } else{
+            uncheckedState.classList.remove('hidden')
+            loadingSpinner.classList.add('hidden')
+            checkedState.classList.add('hidden')
+            if(indicator.textContent !== '0' ){
+                indicator.textContent = Number(indicator.textContent) - 1
+                const rect = progressBar.getBoundingClientRect();
+                progressBar.style.width = (Math.round(rect.width*10)/10) - (20/100) * progressBarContainer.offsetWidth 
+            }
+        }
+        
+
+    }
+    checkbox.addEventListener('click', switchCheckBoxState)
+})
 const siblings = element => [].slice.call(element.parentNode.children)
 
 const stepOne = document.getElementById('step-one')
@@ -84,7 +137,8 @@ for (let i = 0; i < stepOneSiblings.length; i++) {
 const toggleDisplay = function(element) {
     const displayValue = window.getComputedStyle(element).display;
     element.style.display = displayValue === 'none' ? 'flex' : 'none';
-    overlay.style.display = displayValue === 'none' ? 'block' : 'none';
+    bodyOverlay.style.display = displayValue === 'none' ? 'block' : 'none';
+    navOverlay.style.display = displayValue === 'none' ? 'block' : 'none';
 
 }
 closePopupBtn.addEventListener("click", () => offerPopup.style.display = 'none')
@@ -108,10 +162,10 @@ displayMenu.addEventListener("click", function(){
 const closeDisplay = function(element) {
     document.addEventListener("click", function(event){
        const hasClass = event.target.classList.contains('navigation-bar')
-        if(event.target.id === 'background-overlay' || hasClass === true) {
+        if(event.target.id === 'background-overlay' || event.target.id === 'nav-background-overlay' || hasClass === true) {
             element.style.display = 'none'
-            overlay.style.display = 'none'
-            // console.log(navigationBar)
+            bodyOverlay.style.display = bodyOverlay.style.display === 'none' ? 'none' : 'none';
+            navOverlay.style.display = bodyOverlay.style.display === 'block' ? 'none' : 'none';
         }
     })
 }
