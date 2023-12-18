@@ -15,16 +15,23 @@ const progressBar = document.getElementById('progress-bar')
 const setupGuideContainer = document.getElementById('setup-guide-container')
 const setupGuideHeader = document.getElementById('setup-guide-header-container')
 const setupGuideStepsContainer = document.getElementById('setup-guide-steps-container')
+const setupGuideIcon = document.getElementById('setup-guide-header-button')
+ 
 
 const toggleSetupGuide = function(){
-    if (setupGuideContainer.style.maxHeight !== '50000px') {
-        setupGuideContainer.style.maxHeight = '50000px';
+    const openGuide = setupGuideIcon.querySelector('.open-guide-btn')
+    const closeGuide = setupGuideIcon.querySelector('.close-guide-btn')
+    if( setupGuideStepsContainer.classList.contains('steps-slide-down')){
+        setupGuideStepsContainer.classList.remove('steps-slide-down')
+        setupGuideStepsContainer.classList.add('steps-slide-up')
+        openGuide.classList.remove('hidden')
+        closeGuide.classList.add('hidden')
     } else {
-        setupGuideContainer.style.maxHeight = '100px';
-    }    
-    setupGuideStepsContainer.classList.toggle('hidden')
-    setupGuideStepsContainer.classList.toggle('setup-guide-steps-container')
-    console.log(setupGuideContainer.style.maxHeight)
+        setupGuideStepsContainer.classList.remove('steps-slide-up')
+        setupGuideStepsContainer.classList.add('steps-slide-down')
+        openGuide.classList.add('hidden')
+        closeGuide.classList.remove('hidden')
+    }
 }
 setupGuideHeader.addEventListener('click', toggleSetupGuide)
 
@@ -32,7 +39,6 @@ checkBoxes.forEach(function(checkbox) {
     const uncheckedState = checkbox.querySelector('.unchecked-state')
     const loadingSpinner = checkbox.querySelector('.loading-spinner')
     const checkedState = checkbox.querySelector('.checked-state')
-    // console.log({uncheckedState})
 
     const switchCheckBoxState = function(){
         if (!uncheckedState.classList.contains('hidden')) {
@@ -112,26 +118,26 @@ const toggleIllustration = function(element){
 
 for (let i = 0; i < stepOneSiblings.length; i++) {
     stepOneSiblings[i].addEventListener("click", function() {
-        requestAnimationFrame(() => {
-            stepOneSiblings.forEach(function(element, index) {
-                //close any open guide
-                if (element !==this && element.classList.contains('open')) {
-                    toggleSteps(stepOneSiblings[index]);
-                    toggleHeaderText(headers[index]);
-                    toggleSubTextAndButton(subTextsAndButtons[index]);
-                    toggleIllustration(illustrations[index]);
-                    console.log(stepOneSiblings[index])
-                }
-            });
-            //open the guide that is clicked
-            if ( !stepOneSiblings[i].classList.contains('open')) {
-
-                toggleSteps(stepOneSiblings[i]);
-                toggleHeaderText(headers[i]);
-                toggleSubTextAndButton(subTextsAndButtons[i]);
-                toggleIllustration(illustrations[i]);
+       
+        stepOneSiblings.forEach(function(element, index) {
+            //close any open guide
+            if (element !==this && element.classList.contains('open')) {
+                toggleSteps(stepOneSiblings[index]);
+                toggleHeaderText(headers[index]);
+                toggleSubTextAndButton(subTextsAndButtons[index]);
+                toggleIllustration(illustrations[index]);
+                console.log(stepOneSiblings[index])
             }
-        })    
+        });
+        //open the guide that is clicked
+        if ( !stepOneSiblings[i].classList.contains('open')) {
+
+            toggleSteps(stepOneSiblings[i]);
+            toggleHeaderText(headers[i]);
+            toggleSubTextAndButton(subTextsAndButtons[i]);
+            toggleIllustration(illustrations[i]);
+        }
+    
     });
 }
 const toggleDisplay = function(element) {

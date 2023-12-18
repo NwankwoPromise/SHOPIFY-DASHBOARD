@@ -14,7 +14,6 @@
     --focusState: #005BD3;
     --backgroundColor: #F1F1F1;
     --white: #FFFFFF;
-
 }
 
 body {
@@ -51,27 +50,26 @@ li {
     justify-content: space-between;
     align-items: center;
     padding: 0 16px;
-    
-    /* outline:2px solid red; */
-
     margin: 0px;
+}
+p {
+    margin: 0;
 }
 a{
     text-decoration: none;
 }
-
 a, .notification-bell-container, .profile, button {
     cursor: pointer;
     transition: all 200ms ease-in-out;
 }
-
 main {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     top: 28px;
     width: 100vw;
-    padding-top: 120px;
+    gap: 16px;
     z-index: 1;
 }
 
@@ -93,7 +91,7 @@ main {
     right: 0;
     bottom: 0;
     padding-top: 64px;
-    z-index: 300;
+    z-index: 30;
     display: none;
 }
 
@@ -101,8 +99,7 @@ main {
     display: flex;
     width: 32px;
     height: 32px;
-    /* outline: 2px solid red; */
-    background-image: url('https://crushingit.tech/hackathon-assets/shopify-icon.svg');
+    background-image: url('/Images/shopify-mobile-icon.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -114,7 +111,6 @@ main {
     background-color: var(--navGrey200);
     padding: 0;
     height: 32px;
-    /* min-width: 222px; */
     width: 100%;
     max-width: 464px;
     margin: 0 auto;
@@ -147,10 +143,11 @@ main {
     background-color: transparent;
     outline-color: transparent;
     border: none;
+    color: var(--fontColorLight);
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
-    line-height: 140%; /* 18.2px */
+    line-height: 1.1375rem; 
     height: 100%;
 }
 
@@ -257,6 +254,7 @@ main {
 
 .notification-box{
     padding: 16px;
+    gap: 16px;
     background-color: var(--white);
     border: 1px solid var(--strokes50);
     border-radius: 14px;
@@ -272,7 +270,6 @@ main {
     font-size: 14px;
     font-weight: 600;
     line-height: 19.6px;
-    align-self: flex-start;
 }
 
 .notification-message-container {
@@ -288,10 +285,12 @@ main {
     text-align: center;
     color: var(--fontColorDark);
 }
-
+.alert-text-and-icons {
+    display: flex;
+    justify-content: space-between;
+   }
 .filter-circletick-icon-container{
     position: relative;
-    top: -34px;
     display: flex;
     gap: 16px;
     align-self: flex-end;
@@ -300,7 +299,6 @@ main {
 .dropdown-menu {
     display: none;
     color: var(--fontColorDark);
-    /* display: flex; */
     flex-direction: column;
     gap: 4px;
     align-items: flex-start;
@@ -350,7 +348,7 @@ main {
     margin: 0;
     font-size: 10.5px;
     font-weight: 500;
-    line-height: 14.7px; /* 14.7px */
+    line-height: 14.7px;
 }
 .menu-profile-image-placeholder {
     display: flex;
@@ -365,10 +363,9 @@ main {
     margin: 0;
     font-size: 13px;
     font-weight: 600;
-    line-height: 1.1375rem; /* 18.2px */
+    line-height: 1.1375rem;
 }
 .menu-profile-image-and-name {
-    /* display: flex; */
     align-items: center;
     padding: 0;
     gap: 8px;
@@ -440,18 +437,20 @@ main {
     color: var(--fontColorMid);
 }
 
-.select-a-plan{
+.select-a-plan-container {
     background-color: var(--navGrey300);
+    width: 100%;
+    max-width: 800px;
+}
+
+.select-a-plan{
+    align-self: stretch;
+    margin: 0 auto;
     padding: 12px 8px 12px 16px;
     display: grid;
     grid-template-columns: auto auto auto;
     row-gap: 16px;
-    align-self: stretch;
-    width: 95%;
-    max-width: 800px;
-    margin: 0 auto;
-    position: absolute;
-    top: 0;
+    justify-content: space-between;
 }
 
 .select-a-plan p{
@@ -503,42 +502,34 @@ main {
 }
 
 .setup-guide-container {
-    padding: 0 8px 8px 8px;
+    padding-top: 8px;
     position: relative;
     width: 100%;
-    max-width: 800px;
-    min-height: 100px;
-    max-height: 100px;
-    margin: 0 auto;
+    max-width: 799px;
     border: 1px solid var(--strokes50);
     background: var(--white);
     box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    gap: 16px;
     overflow: hidden;
-    transition: max-height 2s ease-in-out;
+    margin-bottom: 30px;
 }
-.setup-guide-header-container {
-    padding: 8px 0 0 0;
-    background-color: var(--white);
-    z-index: 2;
-}
+
 .setup-guide-header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
 }
 
 .setup-guide-header-container {
     display: flex;
     justify-content: space-between;
-    padding: 8px;
+    padding: 8px 16px 8px 16px;
+    background-color: var(--white);
+    z-index: 2;
     cursor: pointer;
     color: var(--fontColorDark);
     align-items: flex-start;
-    /* transition: all 200ms ease-in-out; */
 }
 
 .setup-guide-header-text {
@@ -551,7 +542,7 @@ main {
 .setup-guide-sub-text {
     font-size: 13px;
     font-weight: 400;
-    line-height: 18.2px; /* 18.2px */
+    line-height: 1.1375rem;
     margin: 0 0 16px 0;
 }
 
@@ -592,6 +583,7 @@ main {
     border-radius: 6px;
     transition: all 200ms ease-in-out;
 }
+
 .setup-guide-header-button:hover {
     background: var(--hoverState);
 }
@@ -601,41 +593,34 @@ main {
 .setup-guide-header-button:focus {
     outline: 2px solid var(--focusState);
 }
-
 .setup-guide-steps-container {
-    /* z-index: -1; */
+    height: 0px;
     background-color: var(--white);
-    animation: slide-in 1s ease-in-out;
-    /* transition: all 1s ease-in-out; */
+    margin-bottom: 8px;
 }
-@keyframes slide-in {
-    from{
-        transform: translateY(-500px);
-    }
-    to {
-        transform: translateY(0px);
-    }
-}
+
 .setup-guide-steps {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    /* height: 0; */
-    /* height: 500px; */
+    padding-top: 16px;
     transition: all 200ms ease-in-out;
     overflow: hidden;
 }
-
+.steps-slide-down {
+    animation: slide-down .5s ease-in-out forwards;
+}
+.steps-slide-up {
+    animation: slide-up .5s ease-in-out forwards;
+}
 .open {
     border-radius: 10px;
-    background: #F3F3F3;
+    background-color: #F3F3F3;
     padding: 8px;
     display: flex;
-    align-items: flex-start;
     align-self: stretch;
-    max-height: 150px;
     overflow: hidden;
-    transition: all 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
 }
 .checkbox-and-text {
     display: flex;
@@ -665,36 +650,32 @@ main {
 .loading-spinner {
     animation: spin 1s linear infinite;
 }
-
 .closed {
     background: var(--white);
     border-radius: 10px;
     display: flex;
     padding: 8px;
-    align-items: flex-start;
     align-self: stretch;
     gap: 8px;
     cursor: pointer;
-    max-height: 32px;
+    height: 24px;
     overflow: hidden;
+    text-align: center;
     transition: all 200ms ease-in-out;
 }
-p{
-    margin: 0;
-}
+
 .steps-header-text {
-    padding: 2px 0;
+    padding: 3px 0px 2px 0;
     font-size: 13px;
     font-weight: 600;
     line-height: 18.2px; 
-    transition: all 200ms ease-in-out;
 }
+
 .steps-header-text-closed {
-    padding: 2px 0;
+    padding: 2px 0px;
     font-size: 13px;
     line-height: 18.2px; 
     font-weight: 500;
-    transition: all 200ms ease-in-out;
 }
 .steps-text-and-btn {
     display: flex;
@@ -707,19 +688,18 @@ p{
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
-    visibility: visible;
     transition: all 200ms ease-in-out;
 }
 .steps-subtext-and-btn-closed {
-visibility: collapse;
-z-index: -1;
-transition: all 200ms ease-in-out;
+    z-index: -1;
+    transition: all 200ms ease-in-out;
 }
 
 .steps-sub-text {
     font-size: 13px;
     font-weight: 500;
-    line-height: 18.2px; /* 18.2px */
+    color: var(--fontColorMid);
+    line-height: 1.1375rem;
 }
 .steps-sub-text a{
     font-size: 14px;
@@ -792,7 +772,22 @@ transition: all 200ms ease-in-out;
     background: #FFF;
 }
 
-
+@keyframes slide-up {
+    from{
+        height: 342px;
+    }
+    to {
+        height: 0px;
+    }
+}
+@keyframes slide-down {
+    from{
+        height: 0px;
+    }
+    to {
+        height: 342px;
+    }
+}
 
 @keyframes spin {
     from {
@@ -803,23 +798,14 @@ transition: all 200ms ease-in-out;
     }
 }
 
-@keyframes fade-out {
-    0% {
-        opacity: 1;
-    }
-      100% {
-        opacity: 0;
-    }
-}
 @media screen and (min-width: 800px) {
     main {
         top: 32px;
-        padding-top: 72px;
     }
     .shopify-icon {
         width: 104.868px;
         height: 30px;
-        background-image: url('https://crushingit.tech/hackathon-assets/shopify-icon-desktop.svg');
+        background-image: url('/Images/shopify-desktop-icon.svg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -835,70 +821,63 @@ transition: all 200ms ease-in-out;
         font-size: 12px;
         line-height: 130%;
     }
-    .select-a-plan {
-        display: flex;
-        /* justify-content: space-between; */
-        align-items: center;
-        justify-content: flex-start;
+
+    .select-a-plan-container {
         border-radius: 8px;
     }
+
+    .select-a-plan {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
     .select-a-plan p{
         flex: 1;
     }
  
     .setup-guide-container{
-
         border-radius: 18px;
     }
     .open {
         gap: 96px;
         padding: 8px 8px 12px 8px;
+        align-items: center;
     }
     .illustration {
         width: 156.145px;
         height: 120px;
         flex-shrink: 0;
         display: block;
-        /* align-self: flex-end; */
+        justify-self: center;
     }
-  
+
     .illustration-one {
-        background: url('https://crushingit.tech/hackathon-assets/customise-store.png'), lightgray 50% / cover no-repeat;
+        background: url('/Images/customize-online-store.png');
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .illustration-two {
-        background: url('https://crushingit.tech/hackathon-assets/product.png'), lightgray 50% / cover no-repeat;
+        background: url('/Images/add-first-product.png');
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .illustration-three {
-        background: url('https://crushingit.tech/hackathon-assets/website.png'), lightgray 50% / cover no-repeat;
+        background: url('/Images/add-custom-domain.png');
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .illustration-four {
-        background: url('https://crushingit.tech/hackathon-assets/name-store.png'), lightgray 50% / cover no-repeat;
+        background: url('/Images/name-your-store.png');
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .illustration-five {
-        background: url('https://crushingit.tech/hackathon-assets/payment.png'), lightgray 50% / cover no-repeat;
+        background:  url('/Images/payment-provider.png');
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .illustration-closed {
         display: none;
     }
-    /* .profile {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* outline: 2px solid yellow; */
-        /* border-radius: 8px;
-        background-color: var(--navGrey200);
-        height: 32px;
-        padding: 2px;
-    }  */
-    /* profile:hover {
-        background: var(--fontColorMid);
-    }
-    .profile:active {       
-        background: var(--navGrey50);
-    }
-    .profile:focus {
-        background: var(--navGrey50);
-        box-shadow: 0px 0px 0px 3px #005BD3, 0px 0px 0px 1px #000;
-    } */
-    
 }
